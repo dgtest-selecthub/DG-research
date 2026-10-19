@@ -1,0 +1,28 @@
+name: CI with Cache
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Add the cache step BEFORE the step that downloads dependencies
+      - name: Cache Node.js modules
+        uses: actions/cache@v4
+        with:
+          # path: The directory you want to cache (e.g., node_modules or ~/.npm)
+          path: ~/.npm 
+          # key: An explicit key for restoring and saving the cache
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          # restore-keys: An ordered list of keys to use for restoring stale cache if no cache hit occurred for key
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # 2. Install dependencies (this step will be faster if a cache is found)
+      - name: Install dependencies
+        run: npm ci
