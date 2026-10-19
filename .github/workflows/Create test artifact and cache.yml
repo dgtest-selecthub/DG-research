@@ -1,7 +1,7 @@
 name: Create test artifact and cache
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   build:
@@ -26,4 +26,4 @@ jobs:
         with:
           name: test-artifact-3
           path: output/
-          retention-days: 100
+          retention-days: 80
