@@ -1,0 +1,14 @@
+name: Needs approval
+
+on:
+  workflow_dispatch:
+
+jobs:
+  approval-job:
+    runs-on: windows-latest
+    environment: approval-required
+    steps:
+      - name: Run after approval
+        shell: pwsh
+        run: |
+          Write-Host "Approved! Running the protected job."
