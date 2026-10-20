@@ -1,7 +1,7 @@
 name: Needs approval
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   approval-job:
