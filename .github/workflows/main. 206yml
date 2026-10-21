@@ -1,0 +1,19 @@
+name: Dispatch test
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "Message to print"
+        required: false
+        default: "Hello from API"
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Print message
+        shell: pwsh
+        run: |
+          Write-Host "Triggered by: ${{ github.event_name }}"
+          Write-Host "Message: ${{ github.event.inputs.message }}"
