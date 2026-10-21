@@ -26,4 +26,4 @@ jobs:
 
       # 2. Install dependencies (this step will be faster if a cache is found)
       - name: Install dependencies
-        run: npm install
+        
