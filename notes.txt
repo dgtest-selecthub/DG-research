@@ -1,0 +1,3 @@
+Repeat once or twice, and add a LICENSE file as one of the commits, since you were planning to anyway. If the repo is empty, the first commit creates the default branch.
+
+Branches and pull requests: if you commit to another branch, the commits only count once they're merged into the default branch. So open a PR and merge it, or commit straight to the default branch.
