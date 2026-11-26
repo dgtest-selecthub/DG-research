@@ -1,0 +1,3 @@
+Repeat once or twice, and add a LICENSE file as one of the commits, since you were planning to anyway. If the repo is empty, the first commit creates the default branch.
+Lorem ipsum/
+test code line for commit to work
