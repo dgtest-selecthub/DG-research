@@ -1,0 +1,24 @@
+name: publish
+on: workflow_dispatch
+permissions:
+  contents: read
+  packages: write
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push test images
+        run: |
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          printf 'FROM alpine\nRUN echo hi\n' > Dockerfile
+          for name in test-pkg-1 test-pkg-2 test-pkg-3; do
+            for tag in v1 v2 latest; do
+              docker build -t ghcr.io/$OWNER/$name:$tag .
+              docker push ghcr.io/$OWNER/$name:$tag
+            done
+          done
